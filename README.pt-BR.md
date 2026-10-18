@@ -89,7 +89,8 @@ extensão oficiais:
 | Ensinar o Claude | Hook `prompt.context`: um bloco curto de instruções vai junto com a primeira mensagem de cada conversa. O texto está em `INSTRUCTIONS`, em `hooks/lib.ts`. |
 | `chatclip` | Pasta `bin/` do plugin, que o Claude Code põe no PATH da ferramenta Bash. O script (`scripts/chatclip.mjs`) lê os blocos do arquivo da conversa, em `~/.claude/projects/`. |
 
-O plugin não chama o modelo, não acessa a rede e não altera a conversa.
+O plugin não chama o modelo, não acessa a rede e não altera a conversa. Veja a
+[política de privacidade](PRIVACY.md) (em inglês).
 
 ## Limitações
 

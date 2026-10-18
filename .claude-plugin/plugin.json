@@ -9,6 +9,9 @@
   },
   "homepage": "https://github.com/uayten/CopyPaste",
   "repository": "https://github.com/uayten/CopyPaste",
+  "documentationUrl": "https://github.com/uayten/CopyPaste#readme",
+  "supportUrl": "https://github.com/uayten/CopyPaste/issues",
+  "privacyPolicyUrl": "https://github.com/uayten/CopyPaste/blob/main/PRIVACY.md",
   "license": "MIT",
   "keywords": ["tokens", "copy", "paste", "clipboard", "code-blocks", "mod"]
 }

@@ -89,7 +89,7 @@ extension points:
 | `chatclip` | The plugin's `bin/` folder, which Claude Code puts on the Bash tool's PATH. The script (`scripts/chatclip.mjs`) reads the blocks from the conversation's file in `~/.claude/projects/`. |
 
 The plugin doesn't call the model, doesn't reach the network, and doesn't
-change the conversation.
+change the conversation. See the [privacy policy](PRIVACY.md).
 
 ## Limitations
 
