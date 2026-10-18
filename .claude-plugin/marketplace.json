@@ -1,0 +1,17 @@
+{
+  "name": "fofuxo-copy-paste",
+  "owner": {
+    "name": "Antônio Froz",
+    "url": "https://github.com/uayten"
+  },
+  "metadata": {
+    "description": "Copy & Paste, a Claude Code plugin by Fofuxo: Claude pastes text instead of retyping it"
+  },
+  "plugins": [
+    {
+      "name": "copy-paste",
+      "source": "./",
+      "description": "Claude copies and pastes text instead of retyping it"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "copy-paste",
+  "displayName": "Copy & Paste",
+  "version": "1.0.0",
+  "description": "Claude copies and pastes text instead of retyping it: a {{show: <path>}} line in a reply is drawn as the file's current text, and the chatclip command copies a code block already in the chat to a file or another command",
+  "author": {
+    "name": "Antônio Froz",
+    "url": "https://github.com/uayten"
+  },
+  "homepage": "https://github.com/uayten/CopyPaste",
+  "repository": "https://github.com/uayten/CopyPaste",
+  "license": "MIT",
+  "keywords": ["tokens", "copy", "paste", "clipboard", "code-blocks", "mod"]
+}
