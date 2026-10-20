@@ -1,7 +1,7 @@
 {
   "name": "copy-paste",
   "displayName": "Copy & Paste",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Claude copies and pastes text instead of retyping it: a {{show: <path>}} line in a reply is drawn as the file's current text, and the chatclip command copies a code block already in the chat to a file or another command",
   "author": {
     "name": "Antônio Froz",

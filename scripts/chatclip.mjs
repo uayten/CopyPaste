@@ -90,7 +90,11 @@ function findTranscript(id) {
 function readBlocks(file) {
   const role = user ? "user" : "assistant";
   const result = [];
+  let root;
   for (const line of fs.readFileSync(file, "utf8").split("\n")) {
+    // The session's first folder is its project root, where marker paths start.
+    const cwd = root ? null : line.match(/"cwd":("(?:[^"\\]|\\.)*")/);
+    if (cwd) root = JSON.parse(cwd[1]);
     if (!line.includes(`"${role}"`)) continue;
     let entry;
     try { entry = JSON.parse(line); } catch { continue; }
@@ -100,7 +104,7 @@ function readBlocks(file) {
     if (!Array.isArray(content)) continue;
     for (const part of content) {
       if (part.type !== "text") continue;
-      if (!user) { result.push(...parseFences(expandMarkers(part.text, entry.cwd))); continue; }
+      if (!user) { result.push(...parseFences(expandMarkers(part.text, root, entry.cwd))); continue; }
       const msg = part.text.replace(/<system-reminder>[\s\S]*?<\/system-reminder>/g, "").trim();
       if (!msg) continue;
       const fences = parseFences(msg);
@@ -112,8 +116,9 @@ function readBlocks(file) {
 
 // A reply line holding only {{show: <path>}} is drawn by the copy-paste plugin
 // as the file's current text; put that text here as a fenced block, a
-// relative path read from the folder the reply was written in.
-function expandMarkers(text, cwd) {
+// relative path read from the project root, else from the folder the reply
+// was written in, the order the plugin tries.
+function expandMarkers(text, root, cwd) {
   let fence = null;
   return text.split("\n").map((line) => {
     if (fence) {
@@ -125,7 +130,11 @@ function expandMarkers(text, cwd) {
     if (open) { fence = open[1]; return line; }
     const marker = line.match(/^\s*\{\{show:\s*([^}\n]+?)\s*\}\}\s*$/);
     if (!marker) return line;
-    const file = path.resolve(cwd ?? process.cwd(), marker[1]);
+    const file = [root, cwd, process.cwd()]
+      .filter(Boolean)
+      .map((dir) => path.resolve(dir, marker[1]))
+      .find((f) => fs.existsSync(f));
+    if (!file) return line;
     let body;
     try { body = fs.readFileSync(file, "utf8").replace(/\r\n/g, "\n").trimEnd(); }
     catch { return line; }
